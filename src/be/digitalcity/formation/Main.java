@@ -1,17 +1,26 @@
 package be.digitalcity.formation;
 
+import be.digitalcity.formation.classes.Humain;
+
+import java.time.LocalDate;
+
 public class Main {
 
     public static void main(String[] args) {
+        Humain personne = new Humain();
+        personne.prenom = "Martin";
+        personne.nom = "Navez";
+        personne.anniversaire = LocalDate.of(1996,6,21);
 
-        // Opérateur ternaire
+        personne.afficherInfos();
+        System.out.println(Humain.COUNT);
 
-        int a = 0;
+        Humain personne2 = new Humain();
+        personne2.prenom = "Gregory";
+        personne2.nom = "Ceuleers";
+        personne2.anniversaire = LocalDate.of(1980,6,26);
 
-        if (a < 10){
-            a = 20;
-        } else {
-            a = 30;
-        }
+        personne2.afficherInfos();
+        System.out.println(Humain.COUNT);
     }
 }
