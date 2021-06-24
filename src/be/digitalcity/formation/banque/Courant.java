@@ -6,9 +6,10 @@ public class Courant {
     private double ligneDeCredit;
     private Personne titulaire;
 
+    // Rend le constructeur inaccessible
     private Courant(){}
 
-    // 1 Num et titulaire / 1 num titulaire et ligne de crédit
+    // Constructeur 1. num et titulaire / 2. num, titulaire et ligne de crédit
     public Courant(String numero, Personne titulaire) {
         this.numero = numero;
         this.titulaire = titulaire;
