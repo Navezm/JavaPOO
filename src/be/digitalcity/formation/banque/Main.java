@@ -1,6 +1,7 @@
 package be.digitalcity.formation.banque;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Main {
     public static void main(String[] args) {
@@ -30,5 +31,8 @@ public class Main {
 //        myBank.search("BE12121212121");
 
         myBank.totalAvoir(titulaire);
+
+        Epargne epargne1 = new Epargne();
+        epargne1.setDateDernierRetrait(LocalDateTime.now());
     }
 }
