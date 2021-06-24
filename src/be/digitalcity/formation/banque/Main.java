@@ -24,5 +24,8 @@ public class Main {
 
         myBank.ajouter(new Courant("BE436527328436",new Personne("Gregory","Ceuleers",LocalDate.of(1980,2,15)),1000));
         myBank.search("BE436527328436");
+
+        myBank.supprimer("BE436527326");
+        myBank.search("BE43652736");
     }
 }

@@ -11,10 +11,14 @@ public class Banque {
     }
 
     public void search(String numeroCompte){
-        System.out.printf("Voici les informations du compte %10s\n" +
-                "Nom du titulaire : " +allComptes.get(numeroCompte).getTitulaire().getNom()+" "+allComptes.get(numeroCompte).getTitulaire().getPrenom()+"\n"+
-                "Solde : "+allComptes.get(numeroCompte).getSolde()+"\n"+
-                "Ligne de crédit : "+allComptes.get(numeroCompte).getLigneDeCredit()+"\n",numeroCompte);
+        if (allComptes.containsKey(numeroCompte)) {
+            System.out.printf("Voici les informations du compte %10s\n" +
+                    "Nom du titulaire : " +allComptes.get(numeroCompte).getTitulaire().getNom()+" "+allComptes.get(numeroCompte).getTitulaire().getPrenom()+"\n"+
+                    "Solde : "+allComptes.get(numeroCompte).getSolde()+"\n"+
+                    "Ligne de crédit : "+allComptes.get(numeroCompte).getLigneDeCredit()+"\n",numeroCompte);
+        } else {
+            System.out.println("Le compte n'existe pas !");
+        }
     }
 
     public void ajouter(Courant compte){
@@ -23,7 +27,12 @@ public class Banque {
     }
 
     public void supprimer(String numeroCompte){
-        allComptes.remove(numeroCompte);
-        System.out.printf("Le compte N°%10s a bien été supprimé de la DB\n",numeroCompte);
+        if (allComptes.containsKey(numeroCompte)) {
+            allComptes.remove(numeroCompte);
+            System.out.printf("Le compte N°%10s a bien été supprimé de la DB\n",numeroCompte);
+        } else {
+            System.out.println("Le compte n'existe pas ! Suppresion impossible");
+        }
     }
+
 }
