@@ -1,11 +1,17 @@
-package be.digitalcity.formation.classes;
+package be.digitalcity.formation.banque;
 
 import java.time.LocalDate;
 
 public class Personne {
     private String nom;
     private String prenom;
-    private LocalDate DateNaiss;
+    private LocalDate dateNaiss;
+
+    public Personne(String nom, String prenom, LocalDate dateNaiss){
+        this.nom = nom;
+        this.prenom = prenom;
+        this.dateNaiss = dateNaiss;
+    }
 
     public String getNom() {
         return nom;
@@ -24,10 +30,10 @@ public class Personne {
     }
 
     public LocalDate getDateNaiss() {
-        return DateNaiss;
+        return dateNaiss;
     }
 
     public void setDateNaiss(LocalDate dateNaiss) {
-        DateNaiss = dateNaiss;
+        this.dateNaiss = dateNaiss;
     }
 }

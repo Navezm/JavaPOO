@@ -22,5 +22,6 @@ public class Main {
 
         personne2.afficherInfos();
         System.out.println(Humain.COUNT);
+
     }
 }
