@@ -1,9 +1,9 @@
 package be.digitalcity.formation.banque;
 
 public abstract class Compte {
-    private String numero;
+    protected String numero;
     protected double solde;
-    private Personne titulaire;
+    protected Personne titulaire;
 
     public Compte(String numero, Personne titulaire) {
         this.numero = numero;
@@ -36,22 +36,13 @@ public abstract class Compte {
        }
     }
 
-    public void retrait(double montant){
-        if (montant < this.solde) {
-            this.solde -= montant;
-            System.out.printf("Retrait de %10.2f EUR sur le compte courant %15s" +
-                    "\nNouveau solde de %12.2f EUR\n\n", montant, this.numero, this.solde);
-        } else {
-            System.out.printf("Retrait de %10.2f EUR sur le compte courant %15s est impossible" +
-                    "\nSolde insuffisant\n\n", montant, this.numero);
-        }
-    }
+    public abstract void retrait(double montant);
 
     public void depot(double montant) {
         if (montant > 0) {
             this.solde += montant;
-            System.out.printf("Dépot de %10.2f EUR sur le compte courant %15s" +
-                    "\nNouveau solde de %12.2f EUR\n\n", montant, this.numero, this.solde);
+            System.out.printf("Dépot de %10.2f EUR sur le compte %s %15s" +
+                    "\nNouveau solde de %12.2f EUR\n\n", montant, this.getClass().getSimpleName(), this.numero, this.solde);
         }
     }
 

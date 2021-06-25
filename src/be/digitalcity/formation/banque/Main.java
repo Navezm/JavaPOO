@@ -9,7 +9,7 @@ public class Main {
         Personne titulaire = new Personne("Martin","Navez",LocalDate.of(1996,6,21));
 
         Courant courant = new Courant("BE12121212121", titulaire, 500);
-        Courant courant1 = new Courant("BE746392444325", titulaire, 0);
+        Courant courant1 = new Courant("BE746392444325", titulaire);
 
         courant.depot(1000);
 //        courant.retrait(1200);
@@ -26,14 +26,16 @@ public class Main {
         myBank.ajouter(new Courant("BE436527328436",new Personne("Gregory","Ceuleers",LocalDate.of(1980,2,15)),1000));
 //        myBank.search("BE436527328436");
 
-        // Quand on lance le programme, la ligne 32 s'effectue avant la ligne 29, Pourquoi ?
         myBank.supprimer("BE436527326");
 //        myBank.search("BE12121212121");
 
         myBank.totalAvoir(titulaire);
 
 //        myBank.ajouter();
-        Epargne epargne1 = new Epargne("BE125469646875", titulaire);
-        epargne1.retrait(200);
+        myBank.ajouter(new Epargne("BE125469646875", titulaire));
+        myBank.getAllComptes().get("BE125469646875").depot(1200);
+
+        myBank.totalAvoir(titulaire);
+
     }
 }

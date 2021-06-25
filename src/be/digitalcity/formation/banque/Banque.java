@@ -21,9 +21,9 @@ public class Banque {
     public Compte search(String numeroCompte) {
         if (numeroCompte != null) {
             if (this.allComptes.containsKey(numeroCompte)) {
-                System.out.printf("Voici les informations du compte %10s\n" +
+                System.out.printf("\nVoici les informations du compte %10s\n" +
                         "Nom du titulaire : " + this.allComptes.get(numeroCompte).getTitulaire().getNom() + " " + this.allComptes.get(numeroCompte).getTitulaire().getPrenom() + "\n" +
-                        "Solde : " + this.allComptes.get(numeroCompte).getSolde() + "\n");
+                        "Solde : " + this.allComptes.get(numeroCompte).getSolde() + "\n\n", numeroCompte);
                 return this.allComptes.get(numeroCompte);
             } else {
                 System.out.printf("Le compte %10s n'a pas été trouvé\n", numeroCompte);
@@ -37,7 +37,7 @@ public class Banque {
     public void ajouter(Compte compte) {
         if (compte != null) {
             this.allComptes.put(compte.getNumero(), compte);
-            System.out.printf("Le compte n°%1s du tutilaire %1s a correctement été ajouté à ma banque\n", compte.getNumero(), compte.getTitulaire().getNom());
+            System.out.printf("Le compte %s n°%1s du tutilaire %1s a correctement été ajouté à ma banque\n", compte.getClass().getSimpleName(), compte.getNumero(), compte.getTitulaire().getNom());
         } else {
             System.err.println("Le compte est vide, il n'est pas possible de l'ajouter");
         }
@@ -45,9 +45,9 @@ public class Banque {
 
     public void supprimer(String numeroCompte) {
         if (this.allComptes.remove(numeroCompte) != null) {
-            System.out.printf("Le compte N°%1s a bien été supprimé\n", numeroCompte);
+            System.out.printf("Le compte %s N°%1s a bien été supprimé\n", this.allComptes.get(numeroCompte).getClass().getSimpleName(), numeroCompte);
         } else {
-            System.err.printf("Le compte %1s n'existe pas ! Suppression impossible\n", numeroCompte);
+            System.out.printf("Le compte %1s n'existe pas ! Suppression impossible\n", numeroCompte);
         }
     }
 
@@ -78,7 +78,7 @@ public class Banque {
                 System.out.printf("Le titulaire %25s ne possède pas de compte\n",
                         titulaire.getPrenom()+" "+titulaire.getNom());
             } else {
-                System.out.printf("Total des avoirs de %25s : %.2fEUR\n",
+                System.out.printf("\nTotal des avoirs de %25s : %.2fEUR\n\n",
                         titulaire.getPrenom()+" "+titulaire.getNom(),
                         total);
             }

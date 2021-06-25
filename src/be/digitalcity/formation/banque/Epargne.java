@@ -1,9 +1,8 @@
 package be.digitalcity.formation.banque;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class Epargne extends Compte{
+public final class Epargne extends Compte{
     private LocalDateTime dateDernierRetrait;
 
     public Epargne(String numero, Personne titulaire) {
@@ -18,12 +17,15 @@ public class Epargne extends Compte{
         this.dateDernierRetrait = dateDernierRetrait;
     }
 
-    @Override
     public void retrait(double montant) {
-        double oldSolde = this.solde;
-        super.retrait(montant);
-        if (this.solde < oldSolde){
+        if (montant < this.solde) {
+            this.solde -= montant;
             this.setDateDernierRetrait(LocalDateTime.now());
+            System.out.printf("Retrait de %10.2f EUR sur le compte %s %15s" +
+                    "\nNouveau solde de %12.2f EUR\n\n", montant, this.getClass().getSimpleName(), this.numero, this.solde);
+        } else {
+            System.out.printf("Retrait de %10.2f EUR sur le compte %s %15s est impossible" +
+                    "\nSolde insuffisant\n\n", montant, this.getClass().getSimpleName(), this.numero);
         }
     }
 }
