@@ -1,12 +1,10 @@
 package be.digitalcity.formation.banque;
 
 import java.util.HashMap;
-import java.util.Map;
-import java.util.function.BiConsumer;
 
 public class Banque {
     private final String NOM;
-    private final HashMap<String, Courant> allComptes = new HashMap<>();
+    private final HashMap<String, Compte> allComptes = new HashMap<>();
 
     public Banque(String nom) {
         this.NOM = nom;
@@ -16,17 +14,16 @@ public class Banque {
         return NOM;
     }
 
-    public HashMap<String, Courant> getAllComptes() {
+    public HashMap<String, Compte> getAllComptes() {
         return allComptes;
     }
 
-    public Courant search(String numeroCompte) {
+    public Compte search(String numeroCompte) {
         if (numeroCompte != null) {
             if (this.allComptes.containsKey(numeroCompte)) {
                 System.out.printf("Voici les informations du compte %10s\n" +
                         "Nom du titulaire : " + this.allComptes.get(numeroCompte).getTitulaire().getNom() + " " + this.allComptes.get(numeroCompte).getTitulaire().getPrenom() + "\n" +
-                        "Solde : " + this.allComptes.get(numeroCompte).getSolde() + "\n" +
-                        "Ligne de crédit : " + this.allComptes.get(numeroCompte).getLigneDeCredit() + "\n", numeroCompte);
+                        "Solde : " + this.allComptes.get(numeroCompte).getSolde() + "\n");
                 return this.allComptes.get(numeroCompte);
             } else {
                 System.out.printf("Le compte %10s n'a pas été trouvé\n", numeroCompte);
@@ -37,7 +34,7 @@ public class Banque {
         return null;
     }
 
-    public void ajouter(Courant compte) {
+    public void ajouter(Compte compte) {
         if (compte != null) {
             this.allComptes.put(compte.getNumero(), compte);
             System.out.printf("Le compte n°%1s du tutilaire %1s a correctement été ajouté à ma banque\n", compte.getNumero(), compte.getTitulaire().getNom());
@@ -69,7 +66,7 @@ public class Banque {
 
             double total = 0;
             int compteur = 0;
-            for (Courant compte : this.allComptes.values()) {
+            for (Compte compte : this.allComptes.values()) {
                 if (compte.getTitulaire().equals(titulaire)) {
                     if (compte.getSolde() > 0) {
                         total += compte.getSolde();
