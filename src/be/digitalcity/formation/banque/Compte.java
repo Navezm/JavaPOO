@@ -1,5 +1,7 @@
 package be.digitalcity.formation.banque;
 
+import java.util.Objects;
+
 public abstract class Compte {
     protected String numero;
     protected double solde;
@@ -46,6 +48,16 @@ public abstract class Compte {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Compte compte = (Compte) o;
+        return Double.compare(compte.solde, solde) == 0 && numero.equals(compte.numero) && titulaire.equals(compte.titulaire);
+    }
 
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(numero, solde, titulaire);
+    }
 }
