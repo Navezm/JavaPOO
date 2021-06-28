@@ -1,7 +1,6 @@
 package be.digitalcity.formation.banque;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class Main {
     public static void main(String[] args) {
@@ -16,7 +15,13 @@ public class Main {
 //        courant.retrait(500);
 
         courant1.depot(500);
-        courant1.retrait(650);
+        try {
+            courant1.retrait(650);
+        } catch (SoldeInsuffisantException e) {
+            e.printStackTrace();
+        } finally { // Il est facultatif et permet de toujours passer par là peut-importe les erreurs qui sont catchs avant
+            System.out.println("Je passe tjrs par ici pour finir");
+        }
 
         myBank.ajouter(courant);
         myBank.ajouter(courant1);

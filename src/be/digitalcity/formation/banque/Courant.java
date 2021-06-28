@@ -36,14 +36,15 @@ public final class Courant extends Compte{
         this.ligneDeCredit = Math.abs(ligneDeCredit);
     }
 
-    public void retrait(double montant){
+    public void retrait(double montant) throws SoldeInsuffisantException{
         if (montant < this.solde + this.ligneDeCredit) {
             this.solde -= montant;
             System.out.printf("Retrait de %10.2f EUR sur le compte %s %15s" +
                     "\nNouveau solde de %12.2f EUR\n\n", montant, this.getClass().getSimpleName(), this.numero, this.solde);
         } else {
-            System.out.printf("Retrait de %10.2f EUR sur le compte %s %15s est impossible" +
-                    "\nSolde insuffisant\n\n", montant, this.getClass().getSimpleName(), this.numero);
+            throw new SoldeInsuffisantException();
+//            System.out.printf("Retrait de %10.2f EUR sur le compte %s %15s est impossible" +
+//                    "\nSolde insuffisant\n\n", montant, this.getClass().getSimpleName(), this.numero);
         }
     }
 }

@@ -37,13 +37,13 @@ public abstract class Compte implements Banquier, Client{
         this.titulaire = titulaire;
     }
 
-    protected void retrait(double montant, double ligneDeCredit) {
-       if (montant < this.solde + ligneDeCredit) {
-           this.retrait(montant);
-       }
-    }
+//    protected void retrait(double montant, double ligneDeCredit) {
+//       if (montant < this.solde + ligneDeCredit) {
+//           this.retrait(montant);
+//       }
+//    }
 
-    public abstract void retrait(double montant);
+    public abstract void retrait(double montant) throws SoldeInsuffisantException;
 
     public void depot(double montant) {
         if (montant > 0) {
