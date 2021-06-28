@@ -21,7 +21,7 @@ public class Main {
         myBank.ajouter(courant);
         myBank.ajouter(courant1);
 
-        myBank.search(courant1.getNumero());
+        Compte rechercheCompte = myBank.search(courant1.getNumero());
 
         myBank.ajouter(new Courant("BE436527328436",new Personne("Gregory","Ceuleers",LocalDate.of(1980,2,15)),1000));
 //        myBank.search("BE436527328436");
@@ -36,6 +36,11 @@ public class Main {
         myBank.getAllComptes().get("BE125469646875").depot(1200);
 
         myBank.totalAvoir(titulaire);
+
+        // Logique pour le client
+        System.out.println(((Banquier)rechercheCompte).appliquerInteret(rechercheCompte instanceof Courant ?
+                ((Courant)rechercheCompte).TAUX_INTERET :
+                ((Epargne)rechercheCompte).TAUX_INTERET));
 
     }
 }

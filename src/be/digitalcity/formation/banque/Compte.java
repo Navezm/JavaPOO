@@ -2,7 +2,7 @@ package be.digitalcity.formation.banque;
 
 import java.util.Objects;
 
-public abstract class Compte {
+public abstract class Compte implements Banquier, Client{
     protected String numero;
     protected double solde;
     protected Personne titulaire;
@@ -14,6 +14,11 @@ public abstract class Compte {
 
     public String getNumero() {
         return numero;
+    }
+
+    @Override
+    public double appliquerInteret(double tauxInteret) {
+        return (this.solde * tauxInteret / 100) + this.solde;
     }
 
     public void setNumero(String numero) {

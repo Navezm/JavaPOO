@@ -1,7 +1,10 @@
 package be.digitalcity.formation.banque;
 
 public final class Courant extends Compte{
+
     private double ligneDeCredit;
+
+    protected final double TAUX_INTERET = 5.75;
 
     /*
 
