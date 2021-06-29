@@ -58,10 +58,13 @@ public class Main2 {
         System.out.println();
 
         // Exo 1
-        rechercheEtAffichage(liste, p -> p.getPrenom().endsWith("e"), p -> System.out.println(p));
+        rechercheEtAffichage(liste, p -> p.getPrenom().endsWith("e"), p -> System.out.println(p.getPrenom() + " " + p.getNom() + " correspond au critère"));
 
         // Exo 2
         calcul(10,5, (a, b) -> (a / b));
+
+        // Correction Exo 2
+        calculCorrection(5, 9, (a,b) -> System.out.println(a+b));
 
     }
 
@@ -107,12 +110,21 @@ public class Main2 {
      de filtrer un résultat (Predicate<T>) en passant une lambda
      et de passer ensuite une action (Consumer<T>) d'affichage au choix (lambda) */
 
-    public static void rechercheEtAffichage(List<Personne> list, Predicate<Personne> personne, Consumer<Personne> affichage) {
+    public static void rechercheEtAffichage(List<Personne> list, Predicate<Personne> predicate, Consumer<Personne> action) {
         for (Personne p : list) {
-            if (personne.test(p)){
-                affichage.accept(p);
+            if (predicate.test(p)){
+                action.accept(p);
             }
         }
+    }
+
+    // Correction
+    public static void rechercheEtAffichageCorrection(List<Personne> list, Predicate<Personne> predicate, Consumer<Personne> action) {
+        list.forEach(item -> {
+            if (predicate.test(item)) {
+                action.accept(item);
+            }
+        });
     }
 
      /* Ecrire une méthode qui servira de boîte à calcul sur deux variables int
@@ -122,5 +134,10 @@ public class Main2 {
 
     public static void calcul(int a, int b, IntBinaryOperator operation){
         System.out.println(operation.applyAsInt(a,b));
+    }
+
+    // Correction
+    public static void calculCorrection(int a, int b, Calculable operation){
+        operation.executer(a,b);
     }
 }
