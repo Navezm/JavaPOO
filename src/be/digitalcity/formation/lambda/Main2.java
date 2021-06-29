@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.IntBinaryOperator;
 import java.util.function.Predicate;
 
 public class Main2 {
@@ -54,6 +55,14 @@ public class Main2 {
         // 4e Approche
         rechercherPersonneViaClasseAnonyme(liste, p -> p.getPrenom().endsWith("n") && p.getAge() < 40);
         rechercherPersonneViaClasseAnonyme2(liste, p -> p.getPrenom().endsWith("n") && p.getAge() < 40);
+        System.out.println();
+
+        // Exo 1
+        rechercheEtAffichage(liste, p -> p.getPrenom().endsWith("e"), p -> System.out.println(p));
+
+        // Exo 2
+        calcul(10,5, (a, b) -> (a / b));
+
     }
 
     private static List<Personne> liste = new ArrayList<>();
@@ -98,5 +107,20 @@ public class Main2 {
      de filtrer un résultat (Predicate<T>) en passant une lambda
      et de passer ensuite une action (Consumer<T>) d'affichage au choix (lambda) */
 
+    public static void rechercheEtAffichage(List<Personne> list, Predicate<Personne> personne, Consumer<Personne> affichage) {
+        for (Personne p : list) {
+            if (personne.test(p)){
+                affichage.accept(p);
+            }
+        }
+    }
 
+     /* Ecrire une méthode qui servira de boîte à calcul sur deux variables int
+     * Cette méthode prendra en paramètre les 2 nombres, la lambda pour le calcul
+     * et affichera le résutat
+     */
+
+    public static void calcul(int a, int b, IntBinaryOperator operation){
+        System.out.println(operation.applyAsInt(a,b));
+    }
 }
