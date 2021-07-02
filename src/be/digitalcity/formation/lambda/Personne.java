@@ -1,5 +1,7 @@
 package be.digitalcity.formation.lambda;
 
+import be.digitalcity.formation.enumeration.Main;
+
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -8,6 +10,7 @@ public class Personne {
     private String prenom;
     private int age;
     private LocalDate dateEngagement;
+    public Main.Genre genre;
 
     public Personne(String nom, String prenom, int age, LocalDate dateEngagement) {
         this.nom = nom;
