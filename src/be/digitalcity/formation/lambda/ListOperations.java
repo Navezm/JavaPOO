@@ -2,13 +2,15 @@ package be.digitalcity.formation.lambda;
 
 import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class ListOperations {
 
     public static void main(String[] args) {
 //        execute();
 //        manageList();
-        changeList(liste, listeUpdate);
+//        changeList(liste, listeUpdate);
+        transformData();
     }
 
     public static List<Personne> liste = Arrays.asList(
@@ -20,7 +22,7 @@ public class ListOperations {
         new Personne("Ly", "Pyu", 40, LocalDate.of(2014,3,5))
     );
 
-    public static List<PersonneSimplifiee> listeUpdate = new ArrayList<>();
+//    public static List<PersonneSimplifiee> listeUpdate = new ArrayList<>();
 
     private static List<Double> data = Arrays.asList(1D,2D,3D,4D,5D,6D,7D,8D,9D);
 
@@ -60,7 +62,18 @@ public class ListOperations {
         liste.forEach(item -> System.out.println(item));
     }
 
-    public static void changeList(List<Personne> list, List<PersonneSimplifiee> list2) {
-        list2.forEach(p -> p.setNomComplet(list.stream().map(p2 -> p2.getPrenom() + " " + p2.getNom())));
+//    public static void changeList(List<Personne> list, List<PersonneSimplifiee> list2) {
+//        list2.forEach(p -> p.setNomComplet(list.stream().map(p2 -> p2.getPrenom() + " " + p2.getNom())));
+//    }
+
+    // Correction personne Simplifée
+    public static void transformData() {
+        List<PersonneSimpliféeCorrection> listeSimplifee = liste
+                .stream()
+                .map(x -> new PersonneSimpliféeCorrection(x.getNom() + " " + x.getPrenom(), x.getDateEngagement()))
+                .collect(Collectors.toList());
+
+        listeSimplifee.forEach(System.out::println);
     }
+
 }

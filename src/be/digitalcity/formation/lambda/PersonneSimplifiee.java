@@ -13,21 +13,21 @@ public class PersonneSimplifiee {
         this.secondeDepuisEntree = secondeDepuisEntree;
     }
 
-    public String getNomComplet() {
-        return nomComplet;
-    }
-
-    public void setNomComplet(String nomComplet) {
-        this.nomComplet = nomComplet;
-    }
-
-    public int getSecondeDepuisEntree() {
-        return secondeDepuisEntree;
-    }
-
-    public void setSecondeDepuisEntree(int secondeDepuisEntree) {
-        this.secondeDepuisEntree = secondeDepuisEntree;
-    }
+//    public String getNomComplet() {
+//        return nomComplet;
+//    }
+//
+//    public void setNomComplet(String nomComplet) {
+//        this.nomComplet = nomComplet;
+//    }
+//
+//    public int getSecondeDepuisEntree() {
+//        return secondeDepuisEntree;
+//    }
+//
+//    public void setSecondeDepuisEntree(int secondeDepuisEntree) {
+//        this.secondeDepuisEntree = secondeDepuisEntree;
+//    }
 
     @Override
     public String toString() {
