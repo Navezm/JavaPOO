@@ -1,11 +1,10 @@
 package be.digitalcity.formation.revisions;
 
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import javax.swing.text.html.Option;
+import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DataLoader {
@@ -23,13 +22,28 @@ public class DataLoader {
     }
 
     public List<OptionsHotel> load(String path) {
-        List<OptionsHotel> optionsHotelList = null;
+        List<OptionsHotel> optionsHotelList = new ArrayList<>();
 
-        BufferedInputStream in = null;
+        BufferedReader in = null;
         try {
-            in = new
-        }
+            in = new BufferedReader(new FileReader(path));
 
+            in.readLine(); // Read the first line
+
+            String line;
+
+            while((line = in.readLine()) != null){
+                optionsHotelList.add(new OptionsHotel(line.split(",")));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                in.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
 
 //        FileInputStream fis = null;

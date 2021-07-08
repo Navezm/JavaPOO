@@ -1,25 +1,46 @@
 package be.digitalcity.formation.revisions;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class OptionsHotel implements Serializable {
 
     private String service;
-    private int price;
+    private double price;
+//    private Occurence occurence;
     private String occurence;
     private boolean person;
 
-    public enum Occurence {
-        JOURNALIER,
-        SEMAINE,
-        SPORADIQUE
+    public OptionsHotel(String[] splitTable) {
+        this.service = splitTable[0];
+        this.price = Double.parseDouble(splitTable[1]);
+//        switch (splitTable[2]) {
+
+//            case Occurence.JOURNALIER.name():
+//
+//                break;
+//            case Occurence.SEMAINE.name():
+//
+//                break;
+//            case Occurence.SPORADIQUE.name():
+//
+//                break;
+//        }
+        this.occurence = splitTable[2];
+        this.person = !splitTable[3].equals("0");
     }
 
-    public OptionsHotel(String service, int price, String occurence, boolean person) {
-        this.service = service;
-        this.price = price;
-        this.occurence = occurence;
-        this.person = person;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OptionsHotel that = (OptionsHotel) o;
+        return Double.compare(that.price, price) == 0 && person == that.person && Objects.equals(service, that.service) && occurence == that.occurence;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(service, price, occurence, person);
     }
 
     @Override
