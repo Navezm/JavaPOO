@@ -130,14 +130,41 @@ public class Reservation {
     }
 
     public int daysOfOccupation() {
-        // Pas ok recheck plus tard
+        // Pas ok si on peut réserver sur plusieurs mois, recheck plus tard
         return this.departureDate.getDayOfMonth() - this.arrivalDate.getDayOfMonth();
     }
 
     public double totalPriceTVAC() {
         double totalPrice = 0;
+        double initialPrice = 100;
 
-        return totalPrice;
+        if (this.getnRooms() == 1 || this.getnRooms() == 2) {
+            switch (this.getNbPeoples()) {
+                case 1:
+                    totalPrice = 250;
+                    break;
+                case 2:
+                    totalPrice = 250 + (250 * 0.85);
+                    break;
+            }
+        } else {
+            switch (this.getNbPeoples()) {
+                case 1:
+                    totalPrice = initialPrice;
+                    break;
+                case 2:
+                    totalPrice = initialPrice + (initialPrice * 0.85);
+                    break;
+                case 3:
+                    totalPrice = initialPrice + (initialPrice * 0.85 + initialPrice * 0.7);
+                    break;
+                case 4:
+                    totalPrice = initialPrice + (initialPrice * 0.85 + initialPrice * 0.7 + initialPrice * 0.55);
+                    break;
+            }
+        }
+
+        return totalPrice * 1.21;
     }
 
 }
