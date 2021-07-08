@@ -1,5 +1,7 @@
 package be.digitalcity.formation.files;
 
+import be.digitalcity.formation.annotation.Logging;
+
 import java.io.Serializable;
 
 public class Voiture implements Serializable {
@@ -9,6 +11,20 @@ public class Voiture implements Serializable {
     public Voiture(String marque, int cylindree) {
         this.marque = marque;
         this.cylindree = cylindree;
+    }
+
+    /**
+     * @deprecated : Ne s'utilise plus
+     */
+    @Deprecated
+    @Logging(value = "FAIRE QQCH")
+    public void faireQqch() {
+        System.out.println("Faire quelque chose");
+    }
+
+
+    private void ExecutionApresCTOR() {
+        System.out.println("Nouvelle voiture générée");
     }
 
     @Override
